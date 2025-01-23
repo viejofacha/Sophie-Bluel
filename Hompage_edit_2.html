@@ -11,27 +11,67 @@
       rel="stylesheet"
     />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="edition1.css" />
+    <link rel="stylesheet" href="edition2.css" />
   </head>
   <body>
     <section class="edition">
       <img class="group_3" src="assets/icons/Group 3.png" />
     </section>
-    <div id="modal" class="modal hidden">
+    <div id="upload-modal" class="modal hidden">
       <div class="modal-content">
-        <span>
-          <a href="Hompage_edit.html"><img src="assets/icons/xmark.png" /></a>
-        </span>
-
-        <p>Galerie photo</p>
-        <div id="modal-gallery" class="modal-gallery">
-          <!--------------------------------- MODAL-GALLERY --------------------------->
-        </div>
-        <section>
-          <img class="line" src="assets/icons/Line 1.png" />
+        <ul>
+          <li class="arrow-left">
+            <a href="Hompage_edit_1.html"
+              ><img src="assets/icons/arrow-left.png"
+            /></a>
+          </li>
+          <li class="xmark">
+            <a href="Hompage_edit.html"><img src="assets/icons/xmark.png" /></a>
+          </li>
+        </ul>
+        <p>Ajout photo</p>
+        <form id="upload-form">
+          <div class="form-group">
+            <div>
+              <img class="vector-photo" src="assets/icons/vector-photo.png" />
+            </div>
+            <div>
+              <button class="Ajouter_photo">
+                <label for="photo-upload">+ Ajouter photo</label>
+                <input type="file" id="photo-upload" name="photo" accept="image/png, image/jpeg" required/>
+              </button>
+            </div>
+            <div class="texto"><small>jpg, png : 4mo max</small></div>
+          </div>
+          <section>
+          
+          <div class="form-group1">
+            <label for="title">Titre</label>
+            <input type="text" id="title" name="title" placeholder="" required/>
+          </div>
         </section>
-        <div> <a class="ajouter-btn" href="Hompage_edit_2.html">Ajouter une photo</a>
-        </div>
+        <section>
+          
+          <div class="form-group2">
+            <label for="category">Catégorie</label>
+            <select id="category" name="category" required>
+              <option value="" disabled selected></option>
+            </select>
+          </div>
+        </section>  
+          <div>
+            <img class="line" src="assets/icons/Line 1.png" />
+          </div>
+          <div>
+            <button class="valider-btn" type="submit" id="submit-btn">
+              Valider
+            </button>
+          </div>
+        </form>
+
+        <!-- <div id="modal-gallery" class="modal-gallery">
+          ------------------------------- MODAL-GALLERY --------------------------->
+        <!-- </div> -->
       </div>
     </div>
 
@@ -120,6 +160,5 @@
     </footer>
 
     <script src="assets/scripts.js"></script>
-    <!-- <script src="edition.js"></script> -->
   </body>
 </html>

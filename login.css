@@ -248,6 +248,13 @@ button[type="submit"] {
   text-align: center;
   border-radius: 60px;
 }
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+  text-align: center;
+}
 
 /* form label {
   display: block;
