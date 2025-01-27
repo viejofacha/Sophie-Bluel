@@ -205,10 +205,186 @@ li:hover {
 #introduction p {
   margin-bottom: 0.5em;
 }
+/* ///////////////////////////////////////////////EDITION////////////////////////7 */
+ /* .edition {
+  display: none;
+ max-width: 1440px;
+  height: 59px;
+  border: 1px;
+  top: 0px;
+  background: black;
+}
+.group_3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding-left: 510px;
+  padding-top: 20px;
+  margin-top: -50px;
+
+}
+section img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
 #portfolio h2 {
+  display: flex;
   text-align: center;
   margin-bottom: 1em;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
+#add-work-btn{
+  display: none;
+  position: relative;
+  border: none;
+  background: none;
+  top: 178px;
+  left: 680px;
+}
+/* .edit {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}  */
+/* /////////////////////////////////FIN EDITION//////////////////////////// */
+
+/* //////////////////////////////////MODAL///////////////////////////////// */
+
+/* #modal {
+  width: 630px;
+  height: 688px;
+  position: fixed;
+  top: 110px;
+  left: 254px;
+  border-radius: 10px 10px 10px 10px;
+  background: #ffffff;
+}
+.modal-content {
+  width: 630px;
+  height: 688px;
+}
+#modal p {
+  display: flex;
+  width: 173px;
+  height: 30px;
+  padding-left: 230px;
+  padding-top: 30px;
+  font-family: Work Sans;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30.5px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+
+.modal-gallery {
+  position: absolute;
+  display: grid;
+  width: 70%;
+  align-items: center;
+  justify-content: center; 
+  gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  left: 100px;
+  top: 100px;
+}
+.modal-gallery {
+  display: grid; 
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+#modal span {
+  position: absolute;
+  border: none;
+  color: none;
+  background: none;
+  width: 0px;
+  height: 0px;
+  top: 24px;
+  left: 582px;
+}
+.modal-item {
+  position: relative;
+  width: 76.86px;
+  height: 102.57px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.modal-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-gallery img {
+  width: 76.86px;
+  height: 102.57px;
+  background: #c4c4c4;
+}
+.delete-btn {
+  position: absolute; /* Posiciona el botón dentro del modal-item */
+  /* top: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+ 
+  width: 24px;
+  height: 24px;
+  background: url('assets/icons/poubelle.png') no-repeat center center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+.delete-btn img {
+  width: 16px;
+  height: 16px;
+}
+.modal-gallery figcaption {
+  display: none;
+}
+.line {
+  position: absolute;
+  width: 420px;
+  height: 0px;
+  top: 550px;
+  left: 105px;
+  
+  border: 1px solid #b3b3b3;
+}
+.ajouter-btn {
+  position: absolute;
+  top: 600px;
+  left: 210px;
+  font-family: Syne;
+  font-weight: 700;
+  line-height: 19.2px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  background: #1d6154;
+  color: #fffef8;
+  padding: 10px 15px;
+  border: 1px solid #1d6154;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 60px;
+  margin-right: 10px;
+} */ 
+/* //Fin MODAL//////////////////////////////////////////////////////////// */
+
+/* /////////////////////////////////FILTER//////////////////////////////// */
+
 #filter-container {
   display: flex;
   justify-content: center;
@@ -223,7 +399,7 @@ li:hover {
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   /* background: #1d6154; */
-  color: #1d6154; 
+  color: #1d6154;
   padding: 10px 15px;
   border: 1px solid #1d6154;
   background: #fffef8;
@@ -243,6 +419,9 @@ li:hover {
   color: #fff;
   border-color: #1d6154;
 }
+/* //////////////////////////////////FIN FILTER/////////////////////////////// */
+
+/* //////////////////////////////////GALLERY////////////////////////////////// */
 
 .gallery {
   display: flex;
@@ -261,6 +440,9 @@ li:hover {
 .gallery img {
   width: 100%;
 }
+/* ///////////////////////////////FIN GALLERY///////////////////////////////// */
+
+/* ///////////////////////////////CONTAC////////////////////////////////////// */
 #contact {
   width: 50%;
   margin: auto;
@@ -302,9 +484,94 @@ input[type="submit"] {
   text-align: center;
   border-radius: 60px;
 }
+/* //////////////////////////////FIN CONTAC/////////////////////////////////// */
 
 footer nav ul {
   display: flex;
   justify-content: flex-end;
   margin: 2em;
 }
+/* ////////////////////////////////LOGIN-CSS///////////////////////////// */
+
+/* .login-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  /* width: 300px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+.login-container {
+  width: 50%;
+  margin: auto;
+}
+.login-container > * {
+  text-align: center;
+}
+.login-container h2 {
+  margin-bottom: 20px;
+}
+.login-container form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container input {
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.login-container label {
+  margin: 2em 0 1em 0;
+}
+.login-container textarea {
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+.forgot-password-link { */
+  /* width: 139px;
+  height: 16px;
+  top: 593px;
+  left: 651px; */
+  /* font-family: Work Sans;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.42px;
+  text-align: left;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #3d3d3d;
+}
+
+button[type="submit"] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 179px;
+  height: 36px;
+  text-align: center;
+  border-radius: 60px;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+  text-align: center;
+}
+.error {
+  color: red;
+  font-size: 14px;
+} */ 
+/* ///////////////////////////////////////////FIN LOGIN CSS/////////////////////////////////// */

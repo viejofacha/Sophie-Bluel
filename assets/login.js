@@ -27,13 +27,13 @@ loginForm.addEventListener("submit", async (event) => {
       body: JSON.stringify({ email, password }),
     });
   
-    // (response.ok)
+    (response.ok)
 
     //Traiter la réponse
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem("authToken", data.token); // Stockez le jeton dans localStorage
-      window.location.href = "index.html"; // Redirection vers la page principale
+      window.location.href = "Hompage_edit.html"; // Redirection vers la page principale
     } else {
       const errorData = await response.json();
       errorMessage.textContent = errorData.message || "Erreur de connexion";

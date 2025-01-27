@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="edition2.css" />
+    <link rel="stylesheet" href="assets/edition2.css" />
   </head>
   <body>
     <section class="edition">
@@ -35,30 +35,39 @@
             <div>
               <img class="vector-photo" src="assets/icons/vector-photo.png" />
             </div>
-            <div>
-              <button class="Ajouter_photo">
-                <label for="photo-upload">+ Ajouter photo</label>
-                <input type="file" id="photo-upload" name="photo" accept="image/png, image/jpeg" required/>
-              </button>
+            <div class="photo-preview">
+              <label for="photo-upload"><text>+ Ajouter photo</text></label>
+              <input
+                type="file"
+                id="photo-upload"
+                name="photo"
+                accept="image/png, image/jpeg"
+                required
+              />
             </div>
             <div class="texto"><small>jpg, png : 4mo max</small></div>
           </div>
+
           <section>
-          
-          <div class="form-group1">
-            <label for="title">Titre</label>
-            <input type="text" id="title" name="title" placeholder="" required/>
-          </div>
-        </section>
-        <section>
-          
-          <div class="form-group2">
-            <label for="category">Catégorie</label>
-            <select id="category" name="category" required>
-              <option value="" disabled selected></option>
-            </select>
-          </div>
-        </section>  
+            <div class="form-group1">
+              <label for="title">Titre</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder=""
+                required
+              />
+            </div>
+          </section>
+          <section>
+            <div class="form-group2">
+              <label for="category">Catégorie</label>
+              <select id="category" name="category" required>
+                <option value="" disabled selected></option>
+              </select>
+            </div>
+          </section>
           <div>
             <img class="line" src="assets/icons/Line 1.png" />
           </div>
@@ -69,9 +78,7 @@
           </div>
         </form>
 
-        <!-- <div id="modal-gallery" class="modal-gallery">
-          ------------------------------- MODAL-GALLERY --------------------------->
-        <!-- </div> -->
+        <div id="modal-gallery" class="modal-gallery"></div>
       </div>
     </div>
 
@@ -158,7 +165,7 @@
         </ul>
       </nav>
     </footer>
-
-    <script src="assets/scripts.js"></script>
+    <!-- <script src="assets/scripts.js"></script> -->
+    <script src="assets/edition.js"></script>
   </body>
 </html>

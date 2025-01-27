@@ -148,9 +148,9 @@ body {
 #modal {
   width: 630px;
   height: 688px;
-  position: absolute;
-  top: 646px;
-  left: 646px;
+  position: fixed;
+  top: 110px;
+  left: 254px;
   border-radius: 10px 10px 10px 10px;
   background: #ffffff;
 }
