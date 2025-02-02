@@ -510,16 +510,8 @@ figcaption {
   position: fixed;
   top: 110px;
   left: 254px;
-  /* display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-  position: absolute; */
   width: 630px;
   height: 670px;
-  /* top: 640px;
-  left: 643px; */
   border-radius: 10px 10px 10px 10px;
   background: #ffffff;
 }

@@ -127,52 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // ==============================
-  // 2️⃣ MODALES: ABRIR Y CERRAR
-  // ==============================
-  // if (addWorkBtn && modal) {
-  //   addWorkBtn.addEventListener("click", (event) => {
-  //     event.preventDefault();
-  //     modal.classList.remove("hidden");
-  //     populateModalGallery(galleryData); // Cargar imágenes en el modal
-  //     console.log("📂 Modal de eliminación abierto.");
-  //   });
-  // }
-
-  // if (closeModalBtn) {
-  //   closeModalBtn.addEventListener("click", (event) => {
-  //     event.preventDefault();
-  //     modal.classList.add("hidden");
-  //     console.log("❌ Modal de eliminación cerrado.");
-  //   });
-  // }
-
-  // if (closeUploadModalBtn) {
-  //   closeUploadModalBtn.addEventListener("click", (event) => {
-  //     event.preventDefault();
-  //     uploadModal.classList.add("hidden");
-  //     console.log("❌ Modal de carga cerrado.");
-  //   });
-  // }
-
-  // if (addPhotoBtn) {
-  //   addPhotoBtn.addEventListener("click", (event) => {
-  //     event.preventDefault();
-  //     uploadModal.classList.remove("hidden");
-  //     console.log("📂 Modal de carga abierto.");
-  //   });
-  // }
-
-  // window.addEventListener("click", (event) => {
-  //   if (event.target === modal) {
-  //     modal.classList.add("hidden");
-  //     console.log("❌ Modal de eliminación cerrado al hacer clic fuera.");
-  //   }
-  //   if (event.target === uploadModal) {
-  //     uploadModal.classList.add("hidden");
-  //     console.log("❌ Modal de carga cerrado al hacer clic fuera.");
-  //   }
-  // });
+  
 
   if (addWorkBtn) {
     addWorkBtn.addEventListener("click", (event) => {
@@ -263,41 +218,6 @@ document.getElementById('photo-upload').addEventListener('change', function(even
   console.log(document.querySelector("#photo-upload")); 
 
 });
-// document.getElementById("photo-upload").addEventListener("change", function (event) {
-//   const fileInput = event.target;
-//   const photoPreview = document.querySelector(".photo-preview");
-//   const uploadContainer = document.querySelector(".form-group"); // Contenedor donde está el texto
-//   const uploadButton = document.querySelector(".photo-preview label");
-//   const infoText = document.querySelector(".photo-preview small"); 
-
-//   if (fileInput.files && fileInput.files[0]) {
-//       const reader = new FileReader();
-
-//       reader.onload = function (e) {
-//           photoPreview.innerHTML = ""; // Eliminar todo el contenido previo
-//           const img = document.createElement("img");
-//           img.src = e.target.result;
-//           img.alt = "Vista previa de la imagen";
-//           img.style.maxWidth = "100%";
-//           img.style.maxHeight = "200px";
-//           photoPreview.appendChild(img);
-//       };
-
-//       reader.readAsDataURL(fileInput.files[0]);
-
-//       // Ocultar el botón de carga y el texto de formatos
-//       if (uploadButton) uploadButton.style.display = "none";
-//       if (infoText) infoText.style.display = "none";
-//       if (uploadContainer) uploadContainer.style.background = "none"; // Eliminar cualquier fondo adicional
-
-//   } else {
-//       // Si no hay imagen, restaurar el estado original
-//       photoPreview.innerHTML = "";
-//       if (uploadButton) uploadButton.style.display = "block";
-//       if (infoText) infoText.style.display = "block";
-//       if (uploadContainer) uploadContainer.style.background = ""; // Restaurar el fondo
-//   }
-// });
 
 
 
