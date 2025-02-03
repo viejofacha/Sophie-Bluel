@@ -1,3 +1,33 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const authToken = localStorage.getItem("authToken");
+  const loginMenu = document.getElementById("login-menu");
+  const logoutMenu = document.getElementById("logout-menu");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  if (authToken) {
+      console.log("Utilisateur authentifié, affichant <<logout>>.");
+      if (loginMenu) loginMenu.style.display = "none"; // Oculta "Login"
+      if (logoutMenu) logoutMenu.classList.remove("hidden"); // Muestra "Logout"
+  } else {
+      console.log("Utilisateur non authentifié, affichant Login.");
+      if (loginMenu) loginMenu.style.display = "block"; // Masquer « Login »
+      if (logoutMenu) logoutMenu.classList.add("hidden"); // Masquer « Logout »
+  }
+
+  // Événement pour se déconnecter
+  if (logoutBtn) {
+      logoutBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          localStorage.removeItem("authToken");
+          console.log("Séance close.");
+          window.location.reload(); // Recharger la page pour appliquer les modifications
+      });
+  }
+  console.log(document.getElementById("login-menu"));
+console.log(document.getElementById("logout-menu"));
+});
+
+
 // Sélection du conteneur de la galerie
 const galleryContainer = document.querySelector(".gallery");
 

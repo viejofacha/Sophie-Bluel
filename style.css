@@ -317,6 +317,20 @@ footer nav ul {
 .hidden {
   display: none !important;
 }
+/* Styles à afficher lors de logout lorsque l'utilisateur est authentifié */
+.authenticated #login-menu a {
+  display: none; /* Masquer "Login" */ 
+}
+
+.authenticated #logout-menu {
+  display: inline-block; /*Montrer "Logout" */
+}
+
+/* Style de base, masquer "Logout" par défaut */
+#logout-menu {
+  /* display: none; */
+}
+
 
 /* ================== GALERÍA ================== */
 .gallery {
@@ -474,9 +488,10 @@ body.modal-open {
   width: 16px;
   height: 16px;
 }
-figcaption {
+.modal-gallery figcaption {
   display: none;
 }
+
 
 .ajouter-btn {
   position: absolute;
