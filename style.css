@@ -326,10 +326,7 @@ footer nav ul {
   display: inline-block; /*Montrer "Logout" */
 }
 
-/* Style de base, masquer "Logout" par défaut */
-#logout-menu {
-  /* display: none; */
-}
+
 
 
 /* ================== GALERÍA ================== */
