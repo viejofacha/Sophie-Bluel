@@ -369,3 +369,19 @@ document.getElementById("ajouter-photo-btn").addEventListener("click", () => {
   console.log("Modal de chargement ouvert. Chargement des catégories...");
 });
 });
+const backButton = document.querySelector(".arrow-left a"); // Encuentra el botón
+
+if (backButton) {
+    backButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Evita que recargue la página
+        console.log("🔙 Botón de regreso presionado"); // Verifica en consola si funciona
+
+        // Ocultar el modal actual y volver al anterior si es necesario
+        const uploadModal = document.getElementById("upload-modal");
+        if (uploadModal) {
+            uploadModal.classList.add("hidden");
+        }
+    });
+} else {
+    console.error("⚠️ No se encontró .arrow-left en el DOM.");
+}
