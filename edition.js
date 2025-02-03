@@ -14,39 +14,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     const uploadForm = document.getElementById("upload-form");
     let galleryData = [];
 
-    // Asegurar que photoPreview exista antes de usarlo
+    // Assurez-vous que photoPreview existe avant de l'utiliser
     let photoPreview = document.querySelector(".photo-preview");
     if (!photoPreview) {
-        console.warn("⚠️ No se encontró .photo-preview en el DOM.");
+        console.warn(".photo-preview n'a pas été trouvé dans le DOM.");
     }
 
   // ==============================
-  // 1️⃣ MODO EDICIÓN: Mostrar elementos si el usuario está autenticado
+  // MODE ÉDITION : Afficher les éléments si l'utilisateur est authentifié
   // ==============================
   if (authToken && isEditMode) {
-    console.log("✅ Modo edición activado...");
-    if (editionBar) editionBar.classList.remove("hidden"); // Mostrar barra negra
-    if (addWorkBtn) addWorkBtn.style.display = "block"; // Mostrar botón de agregar imagen
+    console.log(" Mode édition activé...");
+    if (editionBar) editionBar.classList.remove("hidden"); // Afficher la barre noire
+    if (addWorkBtn) addWorkBtn.style.display = "block"; // Afficher le bouton Ajouter une image
 
-    // Evento para abrir el modal al hacer clic en add-work-btn
+    // Evénement pour ouvrir la modale en cliquantadd-work-btn
     if (addWorkBtn && modal) {
       addWorkBtn.addEventListener("click", (event) => {
         event.preventDefault();
         modal.classList.remove("hidden");
-        populateModalGallery(galleryData); // Cargar las imágenes en el modal
-        console.log("📂 Modal de eliminación abierto.");
+        populateModalGallery(galleryData); // Charger des images dans la fenêtre modale
+        console.log(" Ouvrir la fenêtre modale de suppression.");
       });
     } else {
-      console.error("⚠️ No se encontró el modal o el botón add-work-btn.");
+      console.error("Modal ou bouton non trouvé add-work-btn.");
     }
   } else {
-    console.log("❌ Modo edición desactivado...");
-    if (editionBar) editionBar.classList.add("hidden"); // Ocultar barra negra
-    if (addWorkBtn) addWorkBtn.style.display = "none"; // Ocultar botón si no es admin
+    console.log(" Mode édition désactivé...");
+    if (editionBar) editionBar.classList.add("hidden"); // Masquer la barre noire
+    if (addWorkBtn) addWorkBtn.style.display = "none"; // Masquer le bouton si vous n'êtes pas administrateur
   }
 
   // ==============================
-  // 1️⃣ FUNCIÓN PARA CARGAR LA GALERÍA EN EL MODAL
+  //  FONCTION POUR CHARGER LA GALERIE DANS LA MODALE
   // ==============================
   async function fetchWorks() {
     try {
@@ -54,19 +54,19 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
 
       const works = await response.json();
-      console.log("✅ Trabajos obtenidos correctamente:", works);
+      console.log(" Travais obtenus avec succès :", works);
 
       if (!Array.isArray(works))
-        throw new Error("La API no devolvió un array válido.");
+        throw new Error("L'API n'a pas renvoyé de array válide.");
       return works;
     } catch (error) {
-      console.error("❌ Error al obtener los trabajos:", error);
+      console.error("Erreur lors de l'obtention des travais:", error);
       return [];
     }
   }
 
   function populateModalGallery(items) {
-    modalGallery.innerHTML = ""; // Limpia el contenido existente
+    modalGallery.innerHTML = ""; // Effacer le contenu existant
 
     if (!Array.isArray(items) || items.length === 0) {
       modalGallery.innerHTML = "<p>Aucun projet à afficher.</p>";
@@ -74,35 +74,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     items.forEach((item) => {
-      // Contenedor de cada imagen en el modal
+      // Conteneur pour chaque image dans la modale
       const modalItem = document.createElement("div");
       modalItem.classList.add("modal-item");
 
-      // Crear la imagen
+      // Créer l'image
       const img = document.createElement("img");
       img.src = item.imageUrl;
       img.alt = item.title;
 
-      // Crear el botón de eliminación
+      // Créer le bouton de suppression
       const deleteBtn = document.createElement("button");
       deleteBtn.classList.add("delete-btn");
       deleteBtn.style.backgroundImage = "url('assets/icons/poubelle.png')";
       deleteBtn.addEventListener("click", () => deleteWork(item.id, modalItem));
 
-      // Añadir la imagen y el botón al contenedor
+      // Ajoutez l'image et le bouton au conteneur
       modalItem.appendChild(img);
       modalItem.appendChild(deleteBtn);
 
-      // Añadir el contenedor al modal-gallery
+      // Ajoutez le conteneur à la galerie modale
       modalGallery.appendChild(modalItem);
     });
 
-    console.log("📸 Galería cargada en el modal con papelera.");
+    console.log("Galerie chargée dans la modale avec poubelle.");
   }
 
   async function deleteWork(id, modalItem) {
     const confirmDelete = confirm(
-      "¿Seguro que quieres eliminar este proyecto?"
+      "Etes-vous sûr de vouloir supprimer ce projet ?"
     );
     if (!confirmDelete) return;
 
@@ -118,12 +118,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         modalItem.remove();
         galleryData = galleryData.filter((work) => work.id !== id);
         populateModalGallery(galleryData);
-        console.log("✅ Proyecto eliminado correctamente.");
+        console.log("Projet supprimé avec succès.");
       } else {
-        console.error("❌ Error al eliminar el proyecto.");
+        console.error("Erreur lors de la suppression du projet.");
       }
     } catch (error) {
-      console.error("❌ Error en la eliminación:", error);
+      console.error("Erreur lors de la suppression :", error);
     }
   }
 
@@ -133,8 +133,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     addWorkBtn.addEventListener("click", (event) => {
         event.preventDefault();
         modal.classList.remove("hidden");
-        body.classList.add("modal-open"); // Agregar clase al body
-        console.log("📂 Modal de eliminación abierto.");
+        body.classList.add("modal-open"); // Ajouter une classe au body
+        console.log("Modale de suppression est ouverte.");
     });
 }
 
@@ -142,18 +142,18 @@ if (addPhotoBtn) {
     addPhotoBtn.addEventListener("click", (event) => {
         event.preventDefault();
         uploadModal.classList.remove("hidden");
-        body.classList.add("modal-open"); // Agregar clase al body
-        console.log("📂 Modal de carga abierto.");
+        body.classList.add("modal-open"); // Ajouter une classe au body
+        console.log("Modal de chargement est ouverte.");
     });
 }
 
-// **Cerrar modales**
+// **Fermer les modales**
 if (closeModalBtn) {
     closeModalBtn.addEventListener("click", (event) => {
         event.preventDefault();
         modal.classList.add("hidden");
-        body.classList.remove("modal-open"); // Quitar clase del body
-        console.log("❌ Modal de eliminación cerrado.");
+        body.classList.remove("modal-open"); // Supprimer la classe debody
+        console.log("Modal de suppression est fermée.");
     });
 }
 
@@ -161,38 +161,38 @@ if (closeUploadModalBtn) {
     closeUploadModalBtn.addEventListener("click", (event) => {
         event.preventDefault();
         uploadModal.classList.add("hidden");
-        body.classList.remove("modal-open"); // Quitar clase del body
-        console.log("❌ Modal de carga cerrado.");
+        body.classList.remove("modal-open"); // Supprimer la classe de body
+        console.log("Modal de chargement fermé.");
     });
 }
 
-// **Cerrar modales al hacer clic fuera**
+// **Fermer les modales en un clic**
 window.addEventListener("click", (event) => {
     if (event.target === modal) {
         modal.classList.add("hidden");
         body.classList.remove("modal-open");
-        console.log("❌ Modal de eliminación cerrado al hacer clic fuera.");
+        console.log("Modalité d'élimination fermé en cliquant à l'extérieur");
     }
     if (event.target === uploadModal) {
         uploadModal.classList.add("hidden");
         body.classList.remove("modal-open");
-        console.log("❌ Modal de carga cerrado al hacer clic fuera.");
+        console.log("Modal pour le chargement fermé en cliquant à l'extérieur");
     }
 });
 
 
   // ==============================
-  // 3️⃣ CARGA INICIAL DE DATOS
+  // CHARGEMENT INITIAL DES DONNÉES
   // ==============================
   galleryData = await fetchWorks();
   console.log(
-    "🔍 Modo edición detectado:",
+    "Mode d'édition détecté :",
     window.location.search.includes("mode=edit")
   );
-  console.log("🔑 Token de autenticación:", authToken);
+  console.log("🔑 Token d'authentification :", authToken);
 
 
-// Vista previa de imagen
+// Aperçu de l'image
 document.getElementById('photo-upload').addEventListener('change', function(event) {
   const fileInput = event.target;
   const uploadButton = document.querySelector(".photo-preview label");
@@ -203,7 +203,7 @@ document.getElementById('photo-upload').addEventListener('change', function(even
       // photoPreview.innerHTML = '';
       const img = document.createElement('img');
       img.src = e.target.result;
-      img.alt = 'Vista previa de la imagen';
+      img.alt = 'Vista previa, de la imagen';
       img.style.maxWidth = '100%';
       img.style.maxHeight = '200px';
       photoPreview.appendChild(img);
@@ -222,7 +222,7 @@ document.getElementById('photo-upload').addEventListener('change', function(even
 
 
 
-  // Enviar formulario
+  // Envoyer le formulaire
   uploadForm.addEventListener('submit', async function(event) {
     event.preventDefault();
     // uploadForm.elements[3].remove()
@@ -243,16 +243,16 @@ document.getElementById('photo-upload').addEventListener('change', function(even
       return;
     }
     if (!uploadForm) {
-      console.error("❌ Error: No se encontró #upload-form en el DOM");
+      console.error("Error: No se encontró #upload-form en el DOM");
       return;
   } else {
-      console.log("✅ Formulario de carga encontrado correctamente.");
+      console.log("Formulario de carga encontrado correctamente.");
   }
 
   uploadForm.addEventListener("submit", async function (event) {
       event.preventDefault();
-      console.log("📤 Formulario de subida enviado.");
-      // Aquí continúa el código para enviar la imagen...
+      console.log("Formulario de subida enviado.");
+      // Voici la suite du code pour envoyer l'image...
   });
     try {
       const response = await fetch('http://localhost:5678/api/works', {
@@ -282,23 +282,23 @@ document.getElementById('photo-upload').addEventListener('change', function(even
         const works = await fetchWorks();
 
         if (!Array.isArray(works) || works.length === 0) {
-            console.warn("No se han recibido trabajos válidos.");
+            console.warn("Aucune entrée valide n'a été reçue.");
             return;
         }
 
         populateGallery(works);
     } catch (error) {
-        console.error("Error al inicializar la galería:", error);
+        console.error("Erreur lors de l'initialisation de la galerie:", error);
     }
 }
 
-// Ejecutar al cargar la página
+// Exécuter au chargement de la page
 document.addEventListener("DOMContentLoaded", initializeGallery);
 
   
-  // Llamada a la función cuando se cargue la página
+  // Appeler la fonction lorsque la page se charge
   document.addEventListener("DOMContentLoaded", async () => {
-    await initializeGallery(); // Ahora está dentro de una función async
+    await initializeGallery(); // Il est maintenant à l'intérieur d'une fonction async
     await loadCategories();
 });
 
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", initializeGallery);
 
 document.addEventListener("DOMContentLoaded", initializeGallery); //First Call
 
-  // Llamada a la función cuando se cargue la página
+  // Appeler la fonction lorsque la page se charge
   document.addEventListener("DOMContentLoaded", () => {
     initializeGallery();
   }); //Second Call
@@ -318,14 +318,14 @@ document.addEventListener("DOMContentLoaded", initializeGallery); //First Call
   }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await initializeGallery(); // Cargar imágenes
+  await initializeGallery(); // Télécharger des images
   setTimeout(() => {
-      loadCategories(); // Esperar que el modal esté cargado antes de ejecutar
+      loadCategories(); // Attendez que la modale soit chargée avant de l'exécuter
   }, 500); // Second call to loadCategories()
 }); // This closes the listener
 
 // ==============================
-// 🔹 CARGAR CATEGORÍAS EN EL FORMULARIO 🔹
+//  CHARGER LES CATÉGORIES DANS LE FORMULAIRE
 // ==============================
 async function loadCategories() {
   try {
@@ -335,13 +335,13 @@ async function loadCategories() {
 
       const categorySelect = document.getElementById('category');
       if (!categorySelect) {
-          console.error("❌ El elemento #category no existe en el DOM.");
+          console.error("L'élément #category n'existe pas dans le DOM.");
           return;
       }
 
-      categorySelect.innerHTML = ''; // Limpiar cualquier opción previa
+      categorySelect.innerHTML = ''; // Effacer toutes les options précédentes
 
-      // Agregar la opción por defecto vacía
+      // Ajouter une option par défaut vide
       const defaultOption = document.createElement('option');
       defaultOption.value = '';
       defaultOption.textContent = '';
@@ -349,7 +349,7 @@ async function loadCategories() {
       defaultOption.disabled = true;
       categorySelect.appendChild(defaultOption);
 
-      // Agregar las categorías desde la API
+      // Ajout de catégories à partir de l'API
       categories.forEach(category => {
           const option = document.createElement('option');
           option.value = category.id;
@@ -358,14 +358,14 @@ async function loadCategories() {
       });
 
   } catch (error) {
-      console.error('❌ Erreur lors du chargement des catégories:', error);
+      console.error('Erreur lors du chargement des catégories:', error);
   }
 }
 
 
-// Llamar a la función después de que el modal esté abierto
+// Appeler la fonction une fois la modale ouverte
 document.getElementById("ajouter-photo-btn").addEventListener("click", () => {
   loadCategories();
-  console.log("📂 Modal de carga abierto. Cargando categorías...");
+  console.log("Modal de chargement ouvert. Chargement des catégories...");
 });
 });

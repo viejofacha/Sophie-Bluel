@@ -374,7 +374,7 @@ body.modal-open {
 
 
 #adminModal{
-  display: none; /* Inicialmente oculto */
+  display: none; /* Initialement caché */
   width: 630px;
   height: 688px;
   position: fixed;
@@ -433,9 +433,6 @@ body.modal-open {
 }
 #modal span {
   position: absolute;
-  /* border: none;
-  color: none;
-  background: none; */
   width: 0px;
   height: 0px;
   top: 24px;
@@ -461,7 +458,7 @@ body.modal-open {
   background: #c4c4c4;
 }
 .delete-btn {
-  position: absolute; /* Posiciona el botón dentro del modal-item */
+  position: absolute; /* Positionne le bouton à l'intérieur de l'élément modal */
   top: 5px;
   right: 5px;
   background-color: rgba(0, 0, 0, 0.6);

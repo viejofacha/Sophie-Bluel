@@ -1,26 +1,26 @@
-// Selecciona el contenedor de la galería
+// Sélection du conteneur de la galerie
 const galleryContainer = document.querySelector(".gallery");
 
-// Selecciona los botones de filtro
+// Sélection des boutons de filtre
 const filterButtons = document.querySelectorAll(".filter-btn");
 
-// Variable global para almacenar los datos de la galería
+// Variable globale pour stocker les données de la galerie
 let galleryData = [];
 
-// Función para crear y añadir los elementos de la galería
+// Fonction pour créer et ajouter des éléments de galerie
 function populateGallery(items) {
   const galleryContainer = document.querySelector(".gallery");
   galleryContainer.innerHTML = "";
 
   if (!Array.isArray(items) || items.length === 0) {
-      console.warn("No hay trabajos disponibles para mostrar.");
+      console.warn("Il n'y a aucun travail disponible à afficher.");
       galleryContainer.innerHTML = "<p>Aucune image disponible.</p>";
       return;
   }
 
   items.forEach((item) => {
       if (!item.imageUrl || !item.title) {
-          console.warn("Trabajo inválido detectado:", item);
+          console.warn("Travail non valide détectée :", item);
           return;
       }
 
@@ -74,22 +74,22 @@ function renderWorks(works) {
   })
 }
 
-// Función para manejar el clic en los botones
+// Fonction pour gérer les clics sur les boutons
 function handleFilterClick(event) {
-  // Elimina la clase 'active' de todos los botones
+  // Supprimer la classe « active » de tous les boutons
   filterButtons.forEach(button => button.classList.remove('active'));
 
-  // Añade la clase 'active' al botón clicado
+  // Ajoutez la classe « active » au bouton cliqué
   event.target.classList.add('active');
 
-  // Obtener el filtro seleccionado
+  // Obtenir le filtre sélectionné
   const filter = event.target.getAttribute('data-filter');
 
   if (filter === 'all') {
-    // Mostrar todos los elementos
+    // Afficher tous les articles
     populateGallery(galleryData);
   } else {
-    // Filtrar los elementos por la categoría seleccionada
+    // Filtrer les éléments par la catégorie sélectionnée
     const filteredData = galleryData.filter(item => 
       item.category.name === filter
     );
@@ -97,15 +97,15 @@ function handleFilterClick(event) {
   }
 }
 
-// Obtén los datos de la API
+// Obtenir des données à partir de l'API
 fetch('http://localhost:5678/api/works')
   .then(response => response.json())
   .then(data => {
-    galleryData = data; // Asigna los datos a la variable global
-    console.log('Datos cargados:', galleryData);
-    populateGallery(galleryData); // Muestra la galería inicial
+    galleryData = data; // Affecte les données à la variable globale
+    console.log('Données téléchargées :', galleryData);
+    populateGallery(galleryData); //Afficher la galerie initiale
 
-    // Marca el botón "All" como activo al cargar la página
+    // Marquer le bouton « Tous » comme actif au chargement de la page
     const allButton = document.querySelector('.filter-btn[data-filter="all"]');
     if (allButton) {
       allButton.classList.add('active');
@@ -113,7 +113,7 @@ fetch('http://localhost:5678/api/works')
   })
   .catch(error => console.error('Error fetching data:', error));
 
-// Asignar el evento 'click' a todos los botones de filtro
+// Affecter l'événement « clic » à tous les boutons de filtre
 filterButtons.forEach(button => {
   button.addEventListener('click', handleFilterClick);
 });
@@ -127,16 +127,16 @@ async function fetchWorks() {
       }
 
       const works = await response.json();
-      console.log("Trabajos obtenidos correctamente:", works);
+      console.log("Travais obtenus avec succès :", works);
 
       if (!Array.isArray(works)) {
-          throw new Error("La API no devolvió un array válido.");
+          throw new Error("L'API n'a pas renvoyé de arrays valide.");
       }
 
       return works;
   } catch (error) {
-      console.error("Error al obtener los trabajos:", error);
-      return []; // Devuelve un array vacío para evitar errores
+      console.error("Erreur lors de l'obtention des travais :", error);
+      return []; // Renvoie un array vide pour éviter les erreurs
   }
 }
 
@@ -145,17 +145,17 @@ async function initializeGallery() {
       const works = await fetchWorks();
 
       if (!Array.isArray(works) || works.length === 0) {
-          console.warn("No se han recibido trabajos válidos.");
+          console.warn("Aucune entrée valide n'a été reçue.");
           return;
       }
 
       populateGallery(works);
   } catch (error) {
-      console.error("Error al inicializar la galería:", error);
+      console.error("Erreur lors de l'initialisation de la galerie :", error);
   }
 }
 
-// Ejecutar al cargar la página
+// Exécuter au chargement de la page
 document.addEventListener("DOMContentLoaded", initializeGallery);
 
 
