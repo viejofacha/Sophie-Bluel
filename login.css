@@ -59,6 +59,8 @@ body {
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px; 
+  background: #FFFEF8;
+
 }
 header {
   display: flex;
