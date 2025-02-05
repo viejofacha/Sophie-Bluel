@@ -58,7 +58,7 @@ table {
 }
 /** end reset css**/
 body {
-  max-width: 1140px;
+  max-width: 100%;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
@@ -66,9 +66,9 @@ body {
 
 }
 
-.edition { 
+.edition header{ 
 display: none;
-width: 1440px;
+width: 100%;
 height: 59px;
 border: 1px;
 top: 0px;
@@ -99,9 +99,9 @@ header {
   justify-content: space-between;
   margin: 50px 0;
 }
-section {
+/* section {
   margin: 50px 0;
-}
+} */
 
 h1 a {
   display: flex;
@@ -157,6 +157,12 @@ li:hover {
 
 #introduction article {
   flex: 1;
+  
+}
+.Designer {
+  display: block;
+width: 404px;
+height:192px ;
 }
 #introduction h2 {
   margin-bottom: 1em;
@@ -190,7 +196,7 @@ li:hover {
 
 /* /////////////////////////////////FILTER//////////////////////////////// */
 
-#filter-container {
+#filters-section {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
@@ -302,13 +308,14 @@ footer nav ul {
   margin: 2em;
 }
 /* ================== MODO EDICIÓN (ADMINISTRADOR) ================== */
-.edition {
+.edition header{
   width: 100%;
   height: 59px;
   background: black;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center
 }
 
 .group_3 {
@@ -356,10 +363,11 @@ footer nav ul {
 .group_3 {
    /* display: none; */
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-content: center;
   justify-content: center;
-  padding-left: 510px;
+  width: 129px;
+  padding-left: 47%;
   padding-top: 20px;
 }
 section img{
@@ -379,6 +387,12 @@ section img{
   top: 3px;
   left: 5px;
 }
+#filters-section {
+  display: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
 /* //////////////////////////////MODAL///////////////////////// */
 body.modal-open {
@@ -386,31 +400,33 @@ body.modal-open {
 }
 
 
-#adminModal{
-  display: none; /* Initialement caché */
+#modal {
+  /* display: none;   */
   width: 630px;
   height: 688px;
-  position: fixed;
+  /* position: fixed;
   top: 110px;
-  left: 254px;
+  left: 640px;
   transform: translateX(-50%);
   border-radius: 10px 10px 10px 10px;
-  background: #ffffff;
+  background: #ffffff; */
 }
-#modal {
+
+#modal-gallery-section {
   width: 630px;
   height: 688px;
-  position: fixed;
+  /* position: fixed;
   top: 110px;
-  left: 254px;
+  left: 325px; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 10px 10px 10px 10px;
   background: #ffffff;
 }
-.modal-content {
-  width: 630px;
-  height: 688px;
-}
-#modal p {
+
+#modal-gallery-section p {
   display: flex;
   width: 173px;
   height: 30px;
@@ -444,7 +460,7 @@ body.modal-open {
   gap: 15px;
   justify-content: center;
 }
-#modal span {
+#modal-gallery-section span {
   position: absolute;
   width: 0px;
   height: 0px;
@@ -517,20 +533,24 @@ body.modal-open {
 
 /* ///////////////////////////////////UPLOAD_MODAL////////////////////// */
 
-#upload-modal {
-  position: fixed;
+#upload-section {
+  /* position: fixed;
   top: 110px;
-  left: 254px;
+  left: 325px; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 630px;
   height: 670px;
   border-radius: 10px 10px 10px 10px;
   background: #ffffff;
 }
-.modal-content {
+/* .modal-content {
   width: 630px;
   height: 670px;
-}
-#upload-modal p {
+} */
+#upload-section p {
   display: flex;
   width: 173px;
   height: 30px;
@@ -703,4 +723,11 @@ body.modal-open {
   font-size: 16px;
   border-radius: 60px;
   margin-right: 10px;
+}
+/* Responsividad */
+@media (max-width: 768px) {
+  #modal-gallery-section, #upload-section {
+    width: 90%;
+    height: auto;
+  }
 }

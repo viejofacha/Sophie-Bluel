@@ -30,7 +30,7 @@
           <li><a href="#portfolio">Projets</a></li>
           <li><a href="#contact">Contact</a></li>
           <li id="login-menu"><a href="login.html">Login</a></li>
-          <li id="logout-menu" class="hidden"><a href="#" id="logout-btn">Logout</a></li>
+          <li id="logout-menu" style="display: none;"><a href="#" id="logout-btn">Logout</a></li>
           <li><img src="assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -43,10 +43,19 @@
         </figure>
         <article>
           <h2>Designer d'espace</h2>
-          <p>
-            Je raconte votre histoire, je valorise vos idées. Je vous accompagne
-            de la conception à la livraison finale du chantier.
-          </p>
+          <div class="Designer">
+            <p>
+              Je raconte votre histoire, je valorise vos idées. Je vous
+              accompagne de la conception à la livraison finale du chantier.
+              Chaque projet sera étudié en commun, de façon à mettre en valeur
+              les volumes, les matières et les couleurs dans le respect de
+              l’esprit des lieux, et le choix adapté des matériaux. Le suivi du
+              chantier sera assuré dans le souci du détail, le respect du
+              planning et du budget. En cas de besoin, une équipe
+              pluridisciplinaire constituée de : architecte DPLG,
+              décorateur(trice).
+            </p>
+          </div>
         </article>
       </section>
 
@@ -61,7 +70,8 @@
           </h2>
         </div>
 
-        <div id="filter-container">
+        <!-- <div id="filter-container"> -->
+        <section id="filters-section" class="filters">
           <button class="filter-btn" data-filter="all">Tous</button>
           <button class="filter-btn" data-filter="Objets">Objets</button>
           <button class="filter-btn" data-filter="Appartements">
@@ -70,7 +80,8 @@
           <button class="filter-btn" data-filter="Hotels & restaurants">
             Hotels & restaurants
           </button>
-        </div>
+        </section>
+        <!-- </div> -->
 
         <div class="gallery">
           <!-- Il sera généré dynamiquement -->
@@ -95,12 +106,14 @@
 
     <!-- MODALES -->
     
-      <div id="modal" class="modal hidden">
-        <div class="modal-content">
+    <div id="modal" class="modal hidden">
+      
+
+      <!-- <div class="modal-content"> -->
+        <div id="modal-gallery-section">
           <span>
             <a href="#"
-              ><img src="assets/icons/xmark.png" alt="Fermer le modal"
-            /></a>
+              ><img class="return-to-gallery" src="assets/icons/xmark.png" alt="Fermer le modal"/></a>
           </span>
           <p>Galerie photo</p>
           <div id="modal-gallery" class="modal-gallery"></div>
@@ -112,17 +125,20 @@
               Ajouter une photo
             </button>
           </div>
+          </div>
         </div>
-      </div>
 
-      <div id="upload-modal" class="modal hidden">
-        <div class="modal-content">
-          <ul>
+        <div id="upload-section" class="hidden">
+           <ul>
             <li class="arrow-left">
-              <a href="#" id="back-button"><img src="assets/icons/arrow-left.png" alt="retour"/></a>
+              <a href="#" id="back-button"
+                ><img  src="assets/icons/arrow-left.png" alt="retour"
+              /></a>
             </li>
             <li class="xmark">
-              <a href="#"><img src="assets/icons/xmark.png" alt="supprimer"/></a>
+              <a href="#"
+                ><img class="return-to-gallery" src="assets/icons/xmark.png" alt="supprimer"
+              /></a>
             </li>
           </ul>
           <p>Ajout photo</p>
@@ -173,9 +189,10 @@
               </button>
             </div>
           </form>
+          
         </div>
-      </div>
-   
+      <!-- </div> -->
+    </div>
 
     <footer>
       <nav>
@@ -185,9 +202,8 @@
       </nav>
     </footer>
 
-    
     <script src="modo_admin.js"></script>
     <script src="scripts.js"></script>
-    <script src="edition.js" defer></script>
+    <script src="editionCopy.js" ></script>
   </body>
 </html>
