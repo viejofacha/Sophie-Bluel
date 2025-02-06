@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logout-btn");
 
   if (authToken) {
-      console.log("Usuario autenticado. Mostrando Logout.");
+      console.log("Utilisateur authentifié. Affichage Logout.");
       if (loginMenu) loginMenu.style.display = "none";
       if (logoutMenu) logoutMenu.style.display = "block";
   } else {
-      console.log("Usuario NO autenticado. Mostrando Login.");
+      console.log("Utilisateur NON authentifié. Affichage Login.");
       if (loginMenu) loginMenu.style.display = "block";
       if (logoutMenu) logoutMenu.style.display = "none";
   }
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       logoutBtn.addEventListener("click", (event) => {
           event.preventDefault();
           localStorage.removeItem("authToken");
-          console.log("Sesión cerrada.");
+          console.log("Séance close.");
           window.location.reload();
       });
   }
@@ -32,14 +32,14 @@ let galleryData = [];
 function populateGallery(items) {
   galleryContainer.innerHTML = "";
   if (!Array.isArray(items) || items.length === 0) {
-      console.warn("No hay imágenes disponibles.");
+      console.warn("Aucune image disponible.");
       galleryContainer.innerHTML = "<p>Aucune image disponible.</p>";
       return;
   }
   
   items.forEach((item) => {
       if (!item.imageUrl || !item.title) {
-          console.warn("Elemento no válido detectado:", item);
+          console.warn("Élément non valide détecté", item);
           return;
       }
       const galleryItem = document.createElement("figure");
@@ -59,11 +59,11 @@ async function fetchWorks() {
       const response = await fetch("http://localhost:5678/api/works");
       if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
       const works = await response.json();
-      console.log("Trabajos obtenidos con éxito:", works);
-      if (!Array.isArray(works)) throw new Error("Respuesta de API no válida.");
+      console.log("Emplois obtenus avec succès :", works);
+      if (!Array.isArray(works)) throw new Error("Réponse API non valide.");
       return works;
   } catch (error) {
-      console.error("Error al obtener los trabajos:", error);
+      console.error("Erreur lors de l'obtention des emplois :", error);
       return [];
   }
 }
@@ -72,12 +72,12 @@ async function initializeGallery() {
   try {
       galleryData = await fetchWorks();
       if (!Array.isArray(galleryData) || galleryData.length === 0) {
-          console.warn("No se recibieron entradas válidas.");
+          console.warn("Aucune entrée valide n'a été reçue");
           return;
       }
       populateGallery(galleryData);
   } catch (error) {
-      console.error("Error al inicializar la galería:", error);
+      console.error("Erreur lors de l'initialisation de la galerie :", error);
   }
 }
 

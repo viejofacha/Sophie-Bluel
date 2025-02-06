@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
   const authToken = localStorage.getItem("authToken");
   const urlParams = new URLSearchParams(window.location.search);
   const isEditMode = urlParams.get("mode") === "edit";
@@ -12,199 +12,196 @@ document.addEventListener("DOMContentLoaded", async () => {
   const uploadSection = document.getElementById("upload-section");
   const modalGallery = document.getElementById("modal-gallery");
 
-  const closeModalBtn = document.querySelector("#modal span a");
-  // const closeUploadModalBtn = document.querySelector("#upload-section .xmark a");
+  const closeModalBtn = document.querySelector("#modal-gallery-section span a");
+  const closeUploadModalBtn = document.querySelector(
+    "#upload-section .xmark a"
+  );
   const addPhotoBtn = document.getElementById("ajouter-photo-btn");
   const uploadForm = document.getElementById("upload-form");
+  const returnToGalleryBtn = document.querySelector(".arrow-left a"); //Bouton retour
 
-  const ajouterPhotoBtn = document.getElementById("ajouter-photo-btn");
-  const returnToGalleryBtn = document.getElementById("return-to-gallery");
   let galleryData = [];
-  // Evento para mostrar la segunda parte del modal
-  ajouterPhotoBtn.addEventListener("click", () => {
-    modalGallerySection.classList.add("hidden");
-    uploadSection.classList.remove("hidden");
-  });
-
-  // Evento para regresar a la galería
-  returnToGalleryBtn.addEventListener("click", () => {
-    modalGallerySection.classList.remove("hidden");
-    uploadSection.classList.add("hidden");
-  });
-
-  // Assurez-vous que photoPreview existe avant de l'utiliser #upload-sction .xmark
+  // Assurez-vous que photoPreview existe avant de l'utiliser
   let photoPreview = document.querySelector(".photo-preview");
   if (!photoPreview) {
     console.warn(".photo-preview n'a pas été trouvé dans le DOM.");
   }
-   
 
-  // ==============================
-  // MODE ÉDITION : Afficher les éléments si l'utilisateur est authentifié
-  // ==============================
-  if (authToken && isEditMode) {
-    console.log(" Mode édition activé...");
-    if (editionBar) editionBar.classList.remove("hidden"); // Afficher la barre noire
-    if (addWorkBtn) addWorkBtn.style.display = "block"; // Afficher le bouton Ajouter une image
-    if (filtersSection) filtersSection.style.display = "none";
-    // Evénement pour ouvrir la modale en cliquantadd-work-btn
-    if (addWorkBtn && modal) {
-      addWorkBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        modal.classList.remove("hidden");
-        populateModalGallery(galleryData); // Charger des images dans la fenêtre modale
-        console.log(" Ouvrir la fenêtre modale de suppression.");
-      });
-    } else {
-      console.error("Modal ou bouton non trouvé add-work-btn.");
-    }
-  } else {
-    console.log(" Mode édition désactivé...");
-    if (editionBar) editionBar.classList.add("hidden"); // Masquer la barre noire
-    if (addWorkBtn) addWorkBtn.style.display = "none"; // Masquer le bouton si vous n'êtes pas administrateur
-    if (filtersSection) filtersSection.style.display = "flex";
-  }
-
-  // ==============================
-  //  FONCTION POUR CHARGER LA GALERIE DANS LA MODALE
-  // ==============================
   async function fetchWorks() {
     try {
       const response = await fetch("http://localhost:5678/api/works");
       if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-
       const works = await response.json();
-      console.log(" Travais obtenus avec succès :", works);
-
-      if (!Array.isArray(works))
-        throw new Error("L'API n'a pas renvoyé de array válide.");
       return works;
     } catch (error) {
-      console.error("Erreur lors de l'obtention des travais:", error);
+      console.error("Erreur lors de l'obtention des images :", error);
       return [];
     }
   }
 
   function populateModalGallery(items) {
-    modalGallery.innerHTML = ""; // Effacer le contenu existant
-
+    modalGallery.innerHTML = "";
     if (!Array.isArray(items) || items.length === 0) {
       modalGallery.innerHTML = "<p>Aucun projet à afficher.</p>";
       return;
     }
-
     items.forEach((item) => {
-      // Conteneur pour chaque image dans la modale
       const modalItem = document.createElement("div");
       modalItem.classList.add("modal-item");
 
-      // Créer l'image
       const img = document.createElement("img");
       img.src = item.imageUrl;
       img.alt = item.title;
 
-      // Créer le bouton de suppression
       const deleteBtn = document.createElement("button");
       deleteBtn.classList.add("delete-btn");
       deleteBtn.style.backgroundImage = "url('assets/icons/poubelle.png')";
       deleteBtn.addEventListener("click", () => deleteWork(item.id, modalItem));
 
-      // Ajoutez l'image et le bouton au conteneur
       modalItem.appendChild(img);
       modalItem.appendChild(deleteBtn);
-
-      // Ajoutez le conteneur à la galerie modale
       modalGallery.appendChild(modalItem);
     });
-
-    console.log("Galerie chargée dans la modale avec poubelle.");
   }
 
   async function deleteWork(id, modalItem) {
-    const confirmDelete = confirm("Voulez-vous supprimer ce projet ?");
-    if (!confirmDelete) return;
-
+    if (!confirm("Voulez-vous supprimer ce projet ?")) return;
     try {
       const response = await fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
+        headers: { Authorization: `Bearer ${authToken}` },
       });
-
       if (response.ok) {
-        modalItem.remove(); // Eliminar del modal
+        modalItem.remove();
         galleryData = galleryData.filter((work) => work.id !== id);
-        populateGallery(galleryData); // Actualizar la galería principal
-        console.log("✅ Projet supprimé avec succès !");
+        populateGallery(galleryData);
       } else {
-        console.error("❌ Erreur lors de la suppression.");
+        console.error("Erreur lors de la suppression du projet.");
       }
     } catch (error) {
-      console.error("❌ Erreur lors de la suppression:", error);
+      console.error("Erreur lors de la suppression du projet.", error);
     }
   }
 
-  if (addWorkBtn) {
-    addWorkBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      modal.classList.remove("hidden");
-      body.classList.add("modal-open"); // Ajouter une classe au body
-      console.log("Modale de suppression est ouverte.");
-    });
+  async function loadCategories() {
+    try {
+      const response = await fetch("http://localhost:5678/api/categories");
+      if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+      const categories = await response.json();
+      const categorySelect = document.getElementById("category");
+      categorySelect.innerHTML = "<option value='' disabled selected></option>";
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.textContent = category.name;
+        categorySelect.appendChild(option);
+      });
+    } catch (error) {
+      console.error("Erreur lors du chargement des catégories ::", error);
+    }
   }
 
-  if (addPhotoBtn) {
-    addPhotoBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      uploadModal.classList.remove("hidden");
-      body.classList.add("modal-open"); // Ajouter une classe au body
-      console.log("Modal de chargement est ouverte.");
-    });
+  async function handleImageUpload(event) {
+    event.preventDefault();
+    const formData = new FormData(uploadForm);
+    try {
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${authToken}` },
+        body: formData,
+      });
+      if (response.ok) {
+        alert("Photo ajoutée avec succès.");
+        uploadForm.reset();
+        galleryData = await fetchWorks();
+        populateGallery(galleryData);
+       } 
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du formulaire :", error);
+    }
   }
 
-  // **Fermer les modales**
+  function openModal() {
+    modal.classList.remove("hidden");
+    body.classList.add("modal-open");
+  }
+
+  function closeModal() {
+    modal.classList.add("hidden");
+    body.classList.remove("modal-open");
+  }
+
+  if (authToken && isEditMode) {
+    console.log("Mode édition activé...");
+    if (editionBar) editionBar.classList.remove("hidden");
+    if (addWorkBtn) addWorkBtn.style.display = "block";
+    if (filtersSection) filtersSection.style.display = "none";
+
+    if (addWorkBtn) {
+      addWorkBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        openModal();
+        populateModalGallery(galleryData);
+      });
+    }
+  } else {
+    console.log("Mode édition désactivé...");
+    if (editionBar) editionBar.classList.add("hidden");
+    if (addWorkBtn) addWorkBtn.style.display = "none";
+    if (filtersSection) filtersSection.style.display = "flex";
+  }
+
   if (closeModalBtn) {
     closeModalBtn.addEventListener("click", (event) => {
       event.preventDefault();
-      modal.classList.add("hidden");
-      body.classList.remove("modal-open"); // Supprimer la classe de body
-      console.log("Modal de suppression est fermée.");
+      closeModal();
     });
   }
 
   if (closeUploadModalBtn) {
     closeUploadModalBtn.addEventListener("click", (event) => {
       event.preventDefault();
-      uploadModal.classList.add("hidden");
-      body.classList.remove("modal-open"); // Supprimer la classe de body
-      console.log("Modal de chargement fermé.");
+      uploadSection.classList.add("hidden");
     });
   }
 
-  // **Fermer les modales en un clic**
+  // **Flèche pour revenir à la modale précédente**
+  if (returnToGalleryBtn) {
+    returnToGalleryBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      uploadSection.classList.add("hidden");
+      modalGallerySection.classList.remove("hidden");
+    });
+  }
+
   window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.classList.add("hidden");
-      body.classList.remove("modal-open");
-      console.log("Modalité d'élimination fermé en cliquant à l'extérieur");
-    }
-    if (event.target === uploadModal) {
-      uploadModal.classList.add("hidden");
-      body.classList.remove("modal-open");
-      console.log("Modal pour le chargement fermé en cliquant à l'extérieur");
-    }
+    if (event.target === modal) closeModal();
+  });
+
+  uploadForm.addEventListener("submit", handleImageUpload);
+
+  galleryData = fetchWorks().then((data) => {
+    galleryData = data;
+    populateGallery(galleryData);
+  });
+
+  addWorkBtn?.addEventListener("click", openModal);
+  addPhotoBtn?.addEventListener("click", () => {
+    modalGallerySection.classList.add("hidden");
+    uploadSection.classList.remove("hidden");
   });
 
   // ==============================
   // CHARGEMENT INITIAL DES DONNÉES
   // ==============================
-  galleryData = await fetchWorks();
-  console.log(
-    "Mode d'édition détecté :",
-    window.location.search.includes("mode=edit")
-  );
-  console.log("🔑 Token d'authentification :", authToken);
+  async function initializeGallery() {
+    galleryData = await fetchWorks();
+    console.log(
+      "Mode d'édition détecté :",
+      window.location.search.includes("mode=edit")
+    );
+    console.log("🔑 Token de autenticación:", authToken);
+  }
 
   // Aperçu de l'image
   document
@@ -219,12 +216,16 @@ document.addEventListener("DOMContentLoaded", async () => {
           // photoPreview.innerHTML = '';
           const img = document.createElement("img");
           img.src = e.target.result;
-          img.alt = "Vista previa, de la imagen";
+          img.alt = "Aperçu de l'image";
           img.style.maxWidth = "100%";
           img.style.maxHeight = "200px";
           photoPreview.appendChild(img);
         };
-
+        const fileInput = document.getElementById("photo-upload");
+        if (!fileInput.files[0]) {
+          alert("Veuillez sélectionner une image avant de la télécharger.");
+          return;
+        }
         reader.readAsDataURL(fileInput.files[0]);
         if (uploadButton) uploadButton.style.display = "none";
       } else {
@@ -251,21 +252,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     const authToken = localStorage.getItem("authToken");
 
     if (!authToken) {
-      alert("El usuario no está autenticado. Por favor, inicie sesión.");
+      alert("L'utilisateur n'est pas authentifié. Veuillez vous connecter.");
       return;
     }
     if (!uploadForm) {
-      console.error("Error: No se encontró #upload-form en el DOM");
+      console.error("Erreur : #upload-form n'a pas été trouvé dans le DOM");
       return;
     } else {
-      console.log("Formulario de carga encontrado correctamente.");
+      console.log("Formulaire de téléchargement trouvé avec succès.");
     }
 
     uploadForm.addEventListener("submit", async function (event) {
       event.preventDefault();
-      console.log("Formulario de subida enviado.");
+      console.log("Formulaire de téléchargement envoyé.");
       // Voici la suite du code pour envoyer l'image...
     });
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
     try {
       const response = await fetch("http://localhost:5678/api/works", {
         method: "POST",
@@ -376,20 +381,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadCategories();
     console.log("Modal de chargement ouvert. Chargement des catégories...");
   });
+
+  const backButton = document.querySelector(".arrow-left a"); // Trouver le bouton
+
+  if (backButton) {
+    backButton.addEventListener("click", (event) => {
+      event.preventDefault(); // Empêcher le rechargement de la page
+      console.log("🔙 Bouton retour appuyé"); // Vérifiez dans la console si cela fonctionne
+
+      // Masquer la modale actuelle et revenir à la précédente si nécessaire
+      const uploadModal = document.getElementById("upload-modal");
+      if (uploadModal) {
+        uploadModal.classList.add("hidden");
+      }
+    });
+  } else {
+    console.error("⚠️ .arrow-left n'a pas été trouvé dans le DOM.");
+  }
 });
-const backButton = document.querySelector(".arrow-left a"); // Encuentra el botón
-
-if (backButton) {
-  backButton.addEventListener("click", (event) => {
-    event.preventDefault(); // Evita que recargue la página
-    console.log("🔙 Botón de regreso presionado"); // Verifica en consola si funciona
-
-    // Ocultar el modal actual y volver al anterior si es necesario
-    const uploadModal = document.getElementById("upload-section");
-    if (uploadModal) {
-      uploadModal.classList.add("hidden");
-    }
-  });
-} else {
-  console.error("⚠️ No se encontró .arrow-left en el DOM.");
-}

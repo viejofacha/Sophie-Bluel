@@ -99,9 +99,7 @@ header {
   justify-content: space-between;
   margin: 50px 0;
 }
-/* section {
-  margin: 50px 0;
-} */
+
 
 h1 a {
   display: flex;
@@ -209,7 +207,6 @@ height:192px ;
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  /* background: #1d6154; */
   color: #1d6154;
   padding: 10px 15px;
   border: 1px solid #1d6154;
@@ -363,7 +360,6 @@ footer nav ul {
 .group_3 {
    /* display: none; */
   display: flex;
-  /* flex-wrap: wrap; */
   align-content: center;
   justify-content: center;
   width: 129px;
@@ -404,20 +400,11 @@ body.modal-open {
   /* display: none;   */
   width: 630px;
   height: 688px;
-  /* position: fixed;
-  top: 110px;
-  left: 640px;
-  transform: translateX(-50%);
-  border-radius: 10px 10px 10px 10px;
-  background: #ffffff; */
 }
 
 #modal-gallery-section {
   width: 630px;
   height: 688px;
-  /* position: fixed;
-  top: 110px;
-  left: 325px; */
   position: fixed;
   top: 50%;
   left: 50%;
@@ -534,9 +521,6 @@ body.modal-open {
 /* ///////////////////////////////////UPLOAD_MODAL////////////////////// */
 
 #upload-section {
-  /* position: fixed;
-  top: 110px;
-  left: 325px; */
   position: fixed;
   top: 50%;
   left: 50%;
@@ -546,10 +530,7 @@ body.modal-open {
   border-radius: 10px 10px 10px 10px;
   background: #ffffff;
 }
-/* .modal-content {
-  width: 630px;
-  height: 670px;
-} */
+
 #upload-section p {
   display: flex;
   width: 173px;
