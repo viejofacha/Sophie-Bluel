@@ -217,16 +217,15 @@ height:192px ;
   margin-right: 10px;
   transition: background-color 0.3s, color 0.3s;
 }
-
+.filter-btn.active {
+  background-color: #1d6154 !important;
+  color: #ffffff !important;
+}
 .filter-btn:hover {
   background-color: #1d6154;
   color: #ffffff;
 }
-.filter-btn.active {
-  background-color: #1d6154;
-  color: #fff;
-  border-color: #1d6154;
-}
+
 /* //////////////////////////////////FIN FILTER/////////////////////////////// */
 
 /* //////////////////////////////////GALLERY////////////////////////////////// */
@@ -663,9 +662,9 @@ body.modal-open {
   border: none;
 }
 
-#submit-btn:hover {
+/* #submit-btn:hover {
   background-color: #1d6154;
-}
+} */
 
 .line {
   position: absolute;
@@ -684,7 +683,7 @@ body.modal-open {
   border: 1px solid #b3b3b3;
 }
 
-#submit-btn {
+.valider-btn {
   position: absolute;
   width: 237px;
   height: 36px;
@@ -704,6 +703,9 @@ body.modal-open {
   font-size: 16px;
   border-radius: 60px;
   margin-right: 10px;
+}
+.activando {
+  background: #1d6154;
 }
 /* Responsividad */
 @media (max-width: 768px) {

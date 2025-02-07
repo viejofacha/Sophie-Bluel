@@ -13,13 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalGallery = document.getElementById("modal-gallery");
 
   const closeModalBtn = document.querySelector("#modal-gallery-section span a");
-  const closeUploadModalBtn = document.querySelector(
-    "#upload-section .xmark a"
-  );
+  const closeUploadModalBtn = document.querySelector("#upload-section .xmark a");
+  const closeAddModalBtn = document.querySelector("#upload-return-to-gallery")
   const addPhotoBtn = document.getElementById("ajouter-photo-btn");
   const uploadForm = document.getElementById("upload-form");
+  const texto = document.querySelector(".texto");
   const returnToGalleryBtn = document.querySelector(".arrow-left a"); //Bouton retour
-
+  const submitBtn = document.getElementById("submit-btn");
+  const title = document.getElementById("title");
+  const categorySelect = document.getElementById("category");
   let galleryData = [];
   // Assurez-vous que photoPreview existe avant de l'utiliser
   let photoPreview = document.querySelector(".photo-preview");
@@ -96,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         option.textContent = category.name;
         categorySelect.appendChild(option);
       });
+      console.log("Categorías cargadas correctamente:", categories)
     } catch (error) {
       console.error("Erreur lors du chargement des catégories ::", error);
     }
@@ -151,13 +154,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (filtersSection) filtersSection.style.display = "flex";
   }
 
+  
   if (closeModalBtn) {
     closeModalBtn.addEventListener("click", (event) => {
       event.preventDefault();
       closeModal();
     });
   }
-
+  if (closeAddModalBtn) {
+    closeAddModalBtn.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeModal();
+    });
+  }
   if (closeUploadModalBtn) {
     closeUploadModalBtn.addEventListener("click", (event) => {
       event.preventDefault();
@@ -228,12 +237,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         reader.readAsDataURL(fileInput.files[0]);
         if (uploadButton) uploadButton.style.display = "none";
+        if (texto) texto.style.display = "none";
+
       } else {
         photoPreview.innerHTML = "";
         if (uploadButton) uploadButton.style.display = "block";
+        if (texto) texto.style.display = "block";
       }
       console.log(document.querySelector("#photo-upload"));
     });
+
+    photoPreview.addEventListener("change",function(event){
+      if (photoPreview !== "" && title !== "" ){
+        submitBtn.classList.add ("activando")
+      }else{
+        submitBtn.classList.remove ("activando") 
+      }
+    })
+    
+    title.addEventListener("change",function(event){
+      if (title !== "" && photoPreview !== ""){
+        submitBtn.classList.add ("activando")
+      }else{
+        submitBtn.classList.remove ("activando") 
+      }
+    })
+
+    categorySelect.addEventListener("change",function(event){
+      if (title !== "" && photoPreview !== "" && categorySelect !== ""){
+        submitBtn.classList.add ("activando")
+      }else{
+        submitBtn.classList.remove ("activando") 
+      }
+    })
 
   // Envoyer le formulaire
   uploadForm.addEventListener("submit", async function (event) {
@@ -377,10 +413,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Appeler la fonction une fois la modale ouverte
-  document.getElementById("ajouter-photo-btn").addEventListener("click", () => {
+  // document.getElementById("ajouter-photo-btn").addEventListener("click", () => {
+  //   loadCategories();
+  //   console.log("Modal de chargement ouvert. Chargement des catégories...");
+  // });
+  document.getElementById("ajouter-photo-btn")?.addEventListener("click", () => {
+    const modalGallerySection = document.getElementById("modal-gallery-section");
+    const uploadSection = document.getElementById("upload-section");
+
+    if (modalGallerySection) modalGallerySection.classList.add("hidden");
+    if (uploadSection) uploadSection.classList.remove("hidden");
+
+    resetUploadModal(); // Llamar a la función para restablecer el formulario
     loadCategories();
-    console.log("Modal de chargement ouvert. Chargement des catégories...");
-  });
+});
+
 
   const backButton = document.querySelector(".arrow-left a"); // Trouver le bouton
 
@@ -399,3 +446,69 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("⚠️ .arrow-left n'a pas été trouvé dans le DOM.");
   }
 });
+// //////////////////////
+function closeUploadModal() {
+  const uploadSection = document.getElementById("upload-section");
+  const modalGallerySection = document.getElementById("modal-gallery-section");
+
+  if (uploadSection) uploadSection.classList.add("hidden"); // Ocultar upload-modal
+  if (modalGallerySection) modalGallerySection.classList.remove("hidden"); // Mostrar la galería principal
+}
+document.querySelector("#upload-section .xmark a")?.addEventListener("click", (event) => {
+  event.preventDefault();
+  closeUploadModal();
+});
+document.getElementById("add-work-btn")?.addEventListener("click", (event) => {
+  event.preventDefault();
+  const modal = document.getElementById("modal");
+  const body = document.body;
+  const modalGallerySection = document.getElementById("modal-gallery-section");
+  const uploadSection = document.getElementById("upload-section");
+
+  if (modal) {
+      modal.classList.remove("hidden"); // Asegurar que el modal se muestra
+      body.classList.add("modal-open"); // Aplicar fondo oscuro
+
+      // Asegurar que modal-gallery-section es visible y upload-section se oculta
+      if (modalGallerySection) modalGallerySection.classList.remove("hidden");
+      if (uploadSection) uploadSection.classList.add("hidden");
+  }
+});
+// //////////////////////
+function resetUploadModal() {
+  const photoPreview = document.querySelector(".photo-preview img"); // Imagen previa
+  const addPhotoLabel = document.querySelector(".form-group label"); // Botón de subir imagen
+  const fileInput = document.getElementById("photo-upload"); // Input de archivo
+  const fileInfoText = document.querySelector(".texto"); // Texto de formatos permitidos
+
+  if (photoPreview) {
+      photoPreview.remove(); // Eliminar la imagen previa si existe
+  }
+
+  if (addPhotoLabel) {
+      addPhotoLabel.style.display = "block"; // Mostrar el botón de subir imagen
+  }
+
+  if (fileInput) {
+      fileInput.value = ""; // Resetear el input de archivo
+  }
+
+  if (fileInfoText) {
+      fileInfoText.style.display = "block"; // Mostrar el texto de formatos permitidos
+  }
+}
+
+
+// Llamar a resetUploadModal() cuando se abre el upload-modal
+document.getElementById("ajouter-photo-btn")?.addEventListener("click", () => {
+  const modalGallerySection = document.getElementById("modal-gallery-section");
+  const uploadSection = document.getElementById("upload-section");
+
+  if (modalGallerySection) modalGallerySection.classList.add("hidden");
+  if (uploadSection) uploadSection.classList.remove("hidden");
+
+  resetUploadModal(); // Restablecer formulario antes de mostrarlo
+  loadCategories(); // Cargar categorías de la API
+});
+
+// const addPhotoLabel = document.querySelector(".form-group label");
