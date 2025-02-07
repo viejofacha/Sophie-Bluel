@@ -218,10 +218,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("change", function (event) {
       const fileInput = event.target;
       const uploadButton = document.querySelector(".photo-preview label");
+      
       if (fileInput.files && fileInput.files[0]) {
         const reader = new FileReader();
 
         reader.onload = function (e) {
+          
           // photoPreview.innerHTML = '';
           const img = document.createElement("img");
           img.src = e.target.result;
@@ -412,18 +414,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Appeler la fonction une fois la modale ouverte
-  // document.getElementById("ajouter-photo-btn").addEventListener("click", () => {
-  //   loadCategories();
-  //   console.log("Modal de chargement ouvert. Chargement des catégories...");
-  // });
+  
   document.getElementById("ajouter-photo-btn")?.addEventListener("click", () => {
     const modalGallerySection = document.getElementById("modal-gallery-section");
     const uploadSection = document.getElementById("upload-section");
 
     if (modalGallerySection) modalGallerySection.classList.add("hidden");
     if (uploadSection) uploadSection.classList.remove("hidden");
-
+    console.log("Reseteando upload-modal...")
     resetUploadModal(); // Llamar a la función para restablecer el formulario
     loadCategories();
 });
@@ -487,6 +485,8 @@ function resetUploadModal() {
 
   if (addPhotoLabel) {
       addPhotoLabel.style.display = "block"; // Mostrar el botón de subir imagen
+  } else {
+      console.warn("⚠️ No se encontró el botón de 'Ajouter photo'");
   }
 
   if (fileInput) {
@@ -495,20 +495,41 @@ function resetUploadModal() {
 
   if (fileInfoText) {
       fileInfoText.style.display = "block"; // Mostrar el texto de formatos permitidos
+  } else {
+      console.warn("⚠️ No se encontró el texto explicativo de formatos");
   }
 }
+function restoreUploadButton() {
+  const uploadContainer = document.querySelector(".form-group"); // Asegúrate de usar el contenedor correcto
+  
+  if (!uploadContainer) {
+      console.warn("⚠️ No se encontró el contenedor de la imagen");
+      return;
+  }
 
+  let addPhotoLabel = document.querySelector(".form-group label");
 
-// Llamar a resetUploadModal() cuando se abre el upload-modal
+  if (!addPhotoLabel) {
+      addPhotoLabel = document.createElement("label");
+      addPhotoLabel.setAttribute("for", "photo-upload");
+      addPhotoLabel.classList.add("upload-label"); // Ajusta la clase según tu HTML
+      addPhotoLabel.textContent = "+ Ajouter photo"; // Ajusta el texto según tu HTML
+      uploadContainer.appendChild(addPhotoLabel);
+  }
+
+  addPhotoLabel.style.display = "block"
+//   // 🔹 IMPORTANTE: Asegurar que el evento click se adjunta
+//   addPhotoLabel.addEventListener("click", function () {
+//     console.log("📸 Botón 'Ajouter photo' clicado"); 
+//     document.getElementById("photo-upload")?.click();
+// });
+}
+
+// Llamar a la función cuando se abre upload-section
 document.getElementById("ajouter-photo-btn")?.addEventListener("click", () => {
-  const modalGallerySection = document.getElementById("modal-gallery-section");
-  const uploadSection = document.getElementById("upload-section");
-
-  if (modalGallerySection) modalGallerySection.classList.add("hidden");
-  if (uploadSection) uploadSection.classList.remove("hidden");
-
-  resetUploadModal(); // Restablecer formulario antes de mostrarlo
-  loadCategories(); // Cargar categorías de la API
+  restoreUploadButton(); // Restaurar el botón
 });
 
-// const addPhotoLabel = document.querySelector(".form-group label");
+
+
+
