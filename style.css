@@ -83,6 +83,7 @@ background: black;
  padding-left: 510px;
  padding-top: 20px;
 }
+
 section img{
   display: flex;
   align-items: center;
@@ -98,6 +99,9 @@ header {
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
+  margin-bottom: 137px;
+  margin-left: 150px;
+  margin-right: 150px;
 }
 
 
@@ -108,6 +112,7 @@ h1 a {
   font-size: 22px;
   font-weight: 800;
   color: #b1663c;
+  
 }
 
 h1 > span {
@@ -143,19 +148,25 @@ li:hover {
 #introduction {
   display: flex;
   align-items: center;
+  
 }
 #introduction figure {
+  width: 474px;
+  height: 355px;
   flex: 1;
+  margin-bottom: 10px;
+  margin-left: 163px;
 }
 #introduction img {
+  width: 474px;
+  height: 355px;
   display: block;
   margin: auto;
-  width: 80%;
+  /* width: 80%; */
 }
 
 #introduction article {
   flex: 1;
-  
 }
 .Designer {
   display: block;
@@ -168,10 +179,27 @@ height:192px ;
 
 #introduction p {
   margin-bottom: 0.5em;
+  font-family: Work Sans;
+font-weight: 400;
+font-size: 14px;
+line-height: 16.42px;
+letter-spacing: 0%;
+
+}
+#portfolio{
+  margin-top:130px;
 }
 
-
 #portfolio h2 {
+  width: 193px;
+  height: 36px;
+  font-family: Syne;
+font-weight: 700;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0%;
+text-align: center;
+
   display: flex;
   text-align: center;
   margin-bottom: 1em;
@@ -180,6 +208,7 @@ height:192px ;
   align-content: center;
   justify-content: center;
   align-items: center;
+  
 }
 
 .edit {
@@ -188,6 +217,7 @@ height:192px ;
   align-content: center;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 } 
 
 
@@ -197,10 +227,12 @@ height:192px ;
 #filters-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 52px;
+  margin-top: 10px;
 }
 
 .filter-btn {
+  height: 38px;
   font-family: Syne;
   font-weight: 700;
   line-height: 19.2px;
@@ -256,7 +288,7 @@ height:192px ;
 
 /* ///////////////////////////////CONTAC////////////////////////////////////// */
 #contact {
-  width: 50%;
+  width: 379px;
   margin: auto;
 }
 #contact > * {
@@ -264,6 +296,7 @@ height:192px ;
 }
 #contact h2 {
   margin-bottom: 20px;
+  margin-top: 66px;
 }
 #contact form {
   text-align: left;
@@ -297,8 +330,12 @@ input[type="submit"] {
   border-radius: 60px;
 }
 /* //////////////////////////////FIN CONTAC/////////////////////////////////// */
-
+footer{
+  height: 60px;
+  background: #ffffff;
+}
 footer nav ul {
+  height: 60px;
   display: flex;
   justify-content: flex-end;
   margin: 2em;
@@ -337,7 +374,8 @@ footer nav ul {
 /* ================== GALERÍA ================== */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  grid-template-columns: repeat(3, 305px);
   gap: 20px;
 }
 
@@ -386,7 +424,7 @@ section img{
   display: none;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 52px;
 }
 
 /* //////////////////////////////MODAL///////////////////////// */
@@ -662,9 +700,9 @@ body.modal-open {
   border: none;
 }
 
-/* #submit-btn:hover {
+#submit-btn:hover {
   background-color: #1d6154;
-} */
+}
 
 .line {
   position: absolute;
