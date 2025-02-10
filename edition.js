@@ -517,13 +517,8 @@ function restoreUploadButton() {
       uploadContainer.appendChild(addPhotoLabel);
   }
 
-  addPhotoLabel.style.display = "block"
-//   // 🔹 IMPORTANTE: Asegurar que el evento click se adjunta
-//   addPhotoLabel.addEventListener("click", function () {
-//     console.log("📸 Botón 'Ajouter photo' clicado"); 
-//     document.getElementById("photo-upload")?.click();
-// });
-}
+  addPhotoLabel.style.display = "block";
+  
 
 // Llamar a la función cuando se abre upload-section
 document.getElementById("ajouter-photo-btn")?.addEventListener("click", () => {
