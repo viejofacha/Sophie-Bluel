@@ -15,31 +15,41 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- SECTION MODE ÉDITION -->
-    <section class="edition hidden">
-      <img class="group_3" src="assets/icons/Group 3.png" alt="Edition Mode" />
-    </section>
-
-    <header>
-      <h1>
-        <a href="index.html"> Sophie Bluel</a>
-        <span>ARCHITECTE D'INTÉRIEUR</span>
-      </h1>
-      <nav>
-        <ul>
-          <li><a href="#portfolio">projets</a></li>
-          <li><a href="#contact">contact</a></li>
-          <li id="login-menu"><a href="login.html">login</a></li>
-          <li id="logout-menu" style="display: none;"><a href="#" id="logout-btn">logout</a></li>
-          <li><img src="assets/icons/instagram.png" alt="Instagram" /></li>
-        </ul>
-      </nav>
-    </header>
-
     <main>
+      <!-- SECTION MODE ÉDITION -->
+      <section class="edition hidden">
+        <img
+          class="group_3"
+          src="assets/icons/Group 3.png"
+          alt="Edition Mode"
+        />
+      </section>
+
+      <header>
+        <h1>
+          <a href="index.html"> Sophie Bluel</a>
+          <span>ARCHITECTE D'INTÉRIEUR</span>
+        </h1>
+        <nav>
+          <ul>
+            <li><a href="#portfolio">projets</a></li>
+            <li><a href="#contact">contact</a></li>
+            <li id="login-menu"><a href="login.html">login</a></li>
+            <li id="logout-menu" style="display: none">
+              <a href="#" id="logout-btn">logout</a>
+            </li>
+            <li><img src="assets/icons/instagram.png" alt="Instagram" /></li>
+          </ul>
+        </nav>
+      </header>
+
       <section id="introduction">
         <figure>
-          <img class="sophie" src="assets/images/sophie-bluel.png" alt="Sophie Bluel" />
+          <img
+            class="sophie"
+            src="assets/images/sophie-bluel.png"
+            alt="Sophie Bluel"
+          />
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -55,10 +65,9 @@
               chantier sera assuré dans le souci du détail, le respect du
               planning et du budget.
             </p>
-            <p> 
-              En cas de besoin, une équipe
-              pluridisciplinaire constituée de : architecte DPLG,
-              décorateur(trice).
+            <p>
+              En cas de besoin, une équipe pluridisciplinaire constituée de :
+              architecte DPLG, décorateur(trice).
             </p>
           </div>
         </article>
@@ -107,20 +116,34 @@
         </form>
       </section>
     </main>
-
-   
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
 
     <!-- MODALES -->
-    
+
     <div id="modal" class="modal hidden">
-      
-      <div id="modal-gallery-section">
+      <div class="modal-overlay">
+        <!-- Ceci est le fond gris -->
+      </div>
+      <div class="modal-content">
+        <div id="modal-gallery-section">
           <span>
             <a href="#"
-              ><img class="return-to-gallery" src="assets/icons/xmark.png" alt="Fermer le modal"/></a>
+              ><img
+                class="return-to-gallery"
+                src="assets/icons/xmark.png"
+                alt="Fermer le modal"
+            /></a>
           </span>
           <p>Galerie photo</p>
-          <div id="modal-gallery" class="modal-gallery"></div>
+          <div id="modal-gallery" class="modal-gallery">
+            <!-- gallery -->
+          </div>
           <section>
             <img class="line" src="assets/icons/Line 1.png" />
           </section>
@@ -129,19 +152,21 @@
               Ajouter une photo
             </button>
           </div>
-          </div>
-      </div>
+        </div>
 
         <div id="upload-section" class="hidden">
-           <ul>
+          <ul>
             <li class="arrow-left">
               <a href="#" id="back-button"
-                ><img  src="assets/icons/arrow-left.png" alt="retour"
+                ><img src="assets/icons/arrow-left.png" alt="retour"
               /></a>
             </li>
             <li class="xmark">
               <a href="#"
-                ><img id="upload-return-to-gallery" src="assets/icons/xmark.png" alt="supprimer"
+                ><img
+                  id="upload-return-to-gallery"
+                  src="assets/icons/xmark.png"
+                  alt="supprimer"
               /></a>
             </li>
           </ul>
@@ -194,17 +219,8 @@
             </div>
           </form>
         </div>
-      
+      </div>
     </div>
-
-    <footer>
-      <nav>
-        <ul>
-          <li>Mentions Légales</li>
-        </ul>
-      </nav>
-    </footer>
-
     <script src="modo_admin.js"></script>
     <script src="scripts.js"></script>
     <script src="edition.js"></script>

@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logout-btn");
 
   if (authToken) {
-    console.log("Utilisateur authentifié. Affichage Logout.");
+    
     if (loginMenu) loginMenu.style.display = "none";
     if (logoutMenu) logoutMenu.style.display = "block";
   } else {
-    console.log("Utilisateur NON authentifié. Affichage Login.");
+    
     if (loginMenu) loginMenu.style.display = "block";
     if (logoutMenu) logoutMenu.style.display = "none";
   }
@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", (event) => {
       event.preventDefault();
       localStorage.removeItem("authToken");
-      console.log("Séance close.");
       window.location.reload();
     });
   }
@@ -59,7 +58,7 @@ async function fetchWorks() {
     const response = await fetch("http://localhost:5678/api/works");
     if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
     const works = await response.json();
-    console.log("Travais obtenus avec succès :", works);
+    
     if (!Array.isArray(works)) throw new Error("Réponse API non valide.");
     return works;
   } catch (error) {
@@ -106,7 +105,7 @@ document.querySelector('.filter-btn[data-filter="all"]').classList.add("active")
 document.addEventListener("DOMContentLoaded", () => {
     const filterButtons = document.querySelectorAll(".filter-btn");
     const allButton = document.querySelector('.filter-btn [data-filter="all"]');
-    console.log(allButton);
+   
     if (allButton) {
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove("active"))
         allButton.classList.add("active"); // Marcar "Tous" como activo al cargar la página
