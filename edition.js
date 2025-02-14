@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const works = await response.json();
       return works;
     } catch (error) {
-      console.error("Erreur lors de l'obtention des images :", error);
+      console.error("Erreur lors de l'obtention des images :", error);
       return [];
     }
   }
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       
     } catch (error) {
-      console.error("Erreur lors du chargement des catégories ::", error);
+      console.error("Erreur lors du chargement des catégories ::", error);
     }
   }
 
@@ -120,10 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
         uploadForm.reset();
         galleryData = await fetchWorks();
         populateGallery(galleryData);
-      }
-    } catch (error) {
+      };
+      } catch (error) {
       console.error("Erreur lors de l'envoi du formulaire :", error);
     }
+    window.location.reload();
   }
 
   function openModal() {
@@ -299,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     if (!uploadForm) {
-      console.error("Erreur : #upload-form n'a pas été trouvé dans le DOM");
+      console.error("Erreur : #upload-form n'a pas été trouvé dans le DOM");
       return;
     } else {
       
@@ -450,7 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("⚠️ .arrow-left n'a pas été trouvé dans le DOM.");
   }
-});
+// });
 // //////////////////////
 function closeUploadModal() {
   const uploadSection = document.getElementById("upload-section");
@@ -533,6 +534,7 @@ function restoreUploadButton() {
 // Llamar a la función cuando se abre upload-section
 document.getElementById("ajouter-photo-btn")?.addEventListener("click", () => {
   restoreUploadButton(); // Restaurar el botón
+});
 });
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal");
