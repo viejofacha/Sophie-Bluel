@@ -147,39 +147,3 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-// function handleFilterClick(event) {
-//   filterButtons.forEach((button) => button.classList.remove("active"));
-//   event.target.classList.add("active");
-//   const filter = event.target.getAttribute("data-filter");
-
-//   if (filter === "all") {
-//     populateGallery(galleryData);
-//   } else {
-//     const filteredData = galleryData.filter(
-//       (item) => item.category.name === filter
-//     );
-//     populateGallery(filteredData);
-//   }
-// }
-// filterButtons.forEach((button) =>
-//   button.addEventListener("click", handleFilterClick)
-// );
-// document.querySelector('.filter-btn[data-filter="all"]').classList.add("active");
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     const filterButtons = document.querySelectorAll(".filter-btn");
-//     const allButton = document.querySelector('.filter-btn [data-filter="all"]');
-   
-//     if (allButton) {
-//         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove("active"))
-//         allButton.classList.add("active"); // Marcar "Tous" como activo al cargar la página
-//     }
-
-//     // Evento para manejar los clics en los botones de filtro
-//     filterButtons.forEach(button => {
-//         button.addEventListener("click", function () {
-//             filterButtons.forEach(btn => btn.classList.remove("active")); // Remueve "active" de todos
-//             this.classList.add("active"); // Agrega "active" al botón clickeado
-//         });
-//     });
-// });
