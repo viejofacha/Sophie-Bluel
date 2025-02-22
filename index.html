@@ -86,14 +86,7 @@
 
         <!-- <div id="filter-container"> -->
         <section id="filters-section" class="filters">
-          <button class="filter-btn" data-filter="all">Tous</button>
-          <button class="filter-btn" data-filter="Objets">Objets</button>
-          <button class="filter-btn" data-filter="Appartements">
-            Appartements
-          </button>
-          <button class="filter-btn" data-filter="Hotels & restaurants">
-            Hotels & restaurants
-          </button>
+          
         </section>
         <!-- </div> -->
 
@@ -176,17 +169,20 @@
               <div>
                 <img class="vector-photo" src="assets/icons/vector-photo.png" />
               </div>
-              <div class="photo-preview">
+              
+              <div class="photo-form">
                 <label for="photo-upload"><text>+ Ajouter photo</text></label>
                 <input
                   type="file"
                   id="photo-upload"
                   name="photo"
                   accept="image/png, image/jpeg"
-                  required
+                  
                 />
               </div>
+              <div class="photo-preview"></div>
               <div class="texto"><small>jpg, png : 4mo max</small></div>
+              
             </div>
 
             <section>
@@ -216,6 +212,8 @@
               <button class="valider-btn" type="submit" id="submit-btn">
                 Valider
               </button>
+              <div id="error-message" class="error-message"></div>
+
             </div>
           </form>
         </div>

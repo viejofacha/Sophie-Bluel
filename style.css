@@ -253,7 +253,7 @@ text-align: center;
   margin-right: 10px;
   transition: background-color 0.3s, color 0.3s;
 }
-.filter-btn.active {
+.filter-btn.e {
   background-color: #1d6154 !important;
   color: #ffffff !important;
 }
@@ -261,7 +261,10 @@ text-align: center;
   background-color: #1d6154;
   color: #ffffff;
 }
-
+.active {
+  background: #1d6154;
+  color: #ffffff;
+}
 /* //////////////////////////////////FIN FILTER/////////////////////////////// */
 
 /* //////////////////////////////////GALLERY////////////////////////////////// */
@@ -432,9 +435,7 @@ section img{
 }
 
 /* //////////////////////////////MODAL///////////////////////// */
-/* body.modal-open {
-  background: #0000004D;
-  } */
+
 
 
 #modal {
@@ -729,7 +730,7 @@ section img{
   border: none;
 }
 
-#submit-btn:hover {
+.valider-btn:hover {
   background-color: #1d6154;
 }
 
