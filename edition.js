@@ -346,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Recharger la galerie sans actualiser la page
         galleryData = await fetchWorks();
         populateGallery(galleryData);
+        populateModalGallery(galleryData);
       } else {
         alert("Erreur lors de l'ajout de la photo.");
       }
